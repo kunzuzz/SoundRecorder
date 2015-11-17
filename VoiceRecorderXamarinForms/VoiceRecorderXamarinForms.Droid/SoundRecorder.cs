@@ -1,24 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
 using Android.Media;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Xamarin.Forms;
-using Button = Android.Widget.Button;
 
 namespace VoiceRecorderXamarinForms.Droid
 {
     public class SoundRecorder : ISoundRecorder
     {
         private const string Path = "/sdcard/test.3gpp";
-        private MediaRecorder _recorder;
-        private MediaPlayer _player;
+        private MediaRecorder _recorder = new MediaRecorder();
+        private MediaPlayer _player = new MediaPlayer();
 
         public void Record()
         {
@@ -40,10 +29,8 @@ namespace VoiceRecorderXamarinForms.Droid
             _player.Start();
         }
 
-        protected void Pause()
+        public void Pause()
         {
-            //base.OnPause();
-
             _player.Release();
             _recorder.Release();
             _player.Dispose();
@@ -52,19 +39,19 @@ namespace VoiceRecorderXamarinForms.Droid
             _recorder = null;
         }
 
-        //public void Resume()
-        //{
-        //    //base.OnResume();
+        public void Resume()
+        {
+            //base.OnResume();
 
-        //    _recorder = new MediaRecorder();
-        //    _player = new MediaPlayer();
+            _recorder = new MediaRecorder();
+            _player = new MediaPlayer();
 
-        //    _player.Completion += (sender, e) =>
-        //    {
-        //        _player.Reset();
-        //        _start.Enabled = !_start.Enabled;
-        //    };
+            _player.Completion += (sender, e) =>
+            {
+                _player.Reset();
 
-        //}
+                MessagingCenter.Send<ISoundRecorder>(this, "MediaPlayer.Complete");
+            };
+        }
     }
 }

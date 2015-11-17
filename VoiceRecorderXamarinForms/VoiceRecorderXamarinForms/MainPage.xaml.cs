@@ -5,11 +5,14 @@ namespace VoiceRecorderXamarinForms
 {
     public partial class MainPage : ContentPage
     {
-        string translatedNumber;
-
         public MainPage()
         {
             InitializeComponent();
+
+            MessagingCenter.Subscribe<ISoundRecorder>(this, "MediaPlayer.Complete", (sender) =>
+            {
+                StartButton.IsEnabled = !StartButton.IsEnabled;
+            });
         }
 
         //void OnTranslate(object sender, EventArgs e)
@@ -35,8 +38,8 @@ namespace VoiceRecorderXamarinForms
                     "Yes",
                     "No"))
             {
-                stopButton.IsEnabled = !stopButton.IsEnabled;
-                startButton.IsEnabled = !startButton.IsEnabled;
+                StopButton.IsEnabled = !StopButton.IsEnabled;
+                StartButton.IsEnabled = !StartButton.IsEnabled;
 
                 var recorder = DependencyService.Get<ISoundRecorder>();
                 if (recorder != null)
@@ -52,7 +55,7 @@ namespace VoiceRecorderXamarinForms
                     "Yes",
                     "No"))
             {
-                stopButton.IsEnabled = !stopButton.IsEnabled;
+                StopButton.IsEnabled = !StopButton.IsEnabled;
                 //startButton.IsEnabled = !startButton.IsEnabled;
 
                 var recorder = DependencyService.Get<ISoundRecorder>();

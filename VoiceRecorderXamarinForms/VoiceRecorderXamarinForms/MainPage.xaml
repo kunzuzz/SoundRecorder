@@ -13,8 +13,8 @@
                  HorizontalOptions="FillAndExpand"
                  Orientation="Vertical"
                  Spacing="15">
-      <Button x:Name="startButton" Text="Start Recording" IsEnabled="true" Clicked="OnStart" />
-      <Button x:Name="stopButton" Text="Stop Recording" IsEnabled="false" Clicked="OnStop" />
+      <Button x:Name="StartButton" Text="Start Recording" IsEnabled="true" Clicked="OnStart" />
+      <Button x:Name="StopButton" Text="Stop Recording" IsEnabled="false" Clicked="OnStop" />
     </StackLayout>
   </ContentPage.Content>
 </ContentPage>
