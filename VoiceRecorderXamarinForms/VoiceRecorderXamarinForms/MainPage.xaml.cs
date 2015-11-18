@@ -63,12 +63,6 @@ namespace VoiceRecorderXamarinForms
                 {
                     recorder.Stop();
                 }
-
-                var player = DependencyService.Get<IPlayer>();
-                if (recorder != null)
-                {
-                    player.Play();
-                }
             }
         }
     }

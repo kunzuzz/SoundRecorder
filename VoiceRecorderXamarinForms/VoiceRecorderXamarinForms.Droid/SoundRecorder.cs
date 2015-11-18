@@ -5,7 +5,7 @@ namespace VoiceRecorderXamarinForms.Droid
 {
     public class SoundRecorder : ISoundRecorder
     {
-        private const string Path = "/sdcard/test.3gpp";
+        private const string Path1 = "test.3gpp";
         private MediaRecorder _recorder = new MediaRecorder();
         private MediaPlayer _player = new MediaPlayer();
 
@@ -14,9 +14,16 @@ namespace VoiceRecorderXamarinForms.Droid
             _recorder.SetAudioSource(AudioSource.Mic);
             _recorder.SetOutputFormat(OutputFormat.ThreeGpp);
             _recorder.SetAudioEncoder(AudioEncoder.AmrNb);
-            _recorder.SetOutputFile(Path);
+            _recorder.SetOutputFile(CreatePathToFile(Path1));
             _recorder.Prepare();
             _recorder.Start();
+        }
+
+        string CreatePathToFile(string filename)
+        {
+            var path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            return System.IO.Path.Combine(path, filename);
+            //return "";
         }
 
         public void Stop()
@@ -24,7 +31,7 @@ namespace VoiceRecorderXamarinForms.Droid
             _recorder.Stop();
             _recorder.Reset();
 
-            _player.SetDataSource(Path);
+            _player.SetDataSource(CreatePathToFile(Path1));
             _player.Prepare();
             _player.Start();
         }
