@@ -32,29 +32,29 @@ namespace VoiceRecorderXamarinForms
 
         async void OnStart(object sender, EventArgs e)
         {
-            if (await this.DisplayAlert(
-                    "Start recording",
-                    "Please speak",
-                    "Yes",
-                    "No"))
-            {
+            //if (await this.DisplayAlert(
+            //        "Start recording",
+            //        "Please speak",
+            //        "Yes",
+            //        "No"))
+            //{
                 StopButton.IsEnabled = !StopButton.IsEnabled;
                 StartButton.IsEnabled = !StartButton.IsEnabled;
 
                 var recorder = DependencyService.Get<ISoundRecorder>();
                 if (recorder != null)
                     recorder.Record();
-            }
+            //}
         }
 
         async void OnStop(object sender, EventArgs e)
         {
-            if (await this.DisplayAlert(
-                    "Stop recording",
-                    "Are you sure?",
-                    "Yes",
-                    "No"))
-            {
+            //if (await this.DisplayAlert(
+            //        "Stop recording",
+            //        "Are you sure?",
+            //        "Yes",
+            //        "No"))
+            //{
                 StopButton.IsEnabled = !StopButton.IsEnabled;
                 //startButton.IsEnabled = !startButton.IsEnabled;
 
@@ -63,7 +63,7 @@ namespace VoiceRecorderXamarinForms
                 {
                     recorder.Stop();
                 }
-            }
+            //}
         }
     }
 }

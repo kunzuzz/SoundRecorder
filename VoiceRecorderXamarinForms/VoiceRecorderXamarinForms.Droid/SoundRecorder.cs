@@ -1,6 +1,8 @@
 using Android.Media;
 using Xamarin.Forms;
 
+[assembly: Dependency(typeof(VoiceRecorderXamarinForms.Droid.SoundRecorder))]
+
 namespace VoiceRecorderXamarinForms.Droid
 {
     public class SoundRecorder : ISoundRecorder
